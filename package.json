@@ -1,0 +1,33 @@
+{
+  "name": "chatapp",
+  "version": "1.0.0",
+  "description": "Real-time chat application using MERN stack",
+  "author": "Naman Kumar",
+  "license": "ISC",
+  "type": "module",
+  "main": "index.js",
+
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naman0867/chatapp.git"
+  },
+
+  "bugs": {
+    "url": "https://github.com/naman0867/chatapp/issues"
+  },
+
+  "homepage": "https://github.com/naman0867/chatapp#readme",
+
+  "keywords": [
+    "mern",
+    "chat-app",
+    "socketio",
+    "mongodb",
+    "react"
+  ]
+}
