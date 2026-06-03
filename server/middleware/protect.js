@@ -1,19 +1,26 @@
 const jwt = require("jsonwebtoken");
-jwt 
+
 async function protect(req) {
-return new Promise((resolve, reject) => {
-const token = req.cookies?.authToken;
-if (token) {
-      jwt.verify(token, process.env.JWTPRIVATEKEY, {}, (err, use
-if (err) {
-reject(err);
-} else {
-resolve(userData);
+  return new Promise((resolve, reject) => {
+    const token = req.cookies?.authToken;
+
+    if (!token) {
+      return reject("No token");
+    }
+
+    jwt.verify(
+      token,
+      process.env.JWTPRIVATEKEY,
+      {},
+      (err, userData) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(userData);
+        }
+      }
+    );
+  });
 }
-});
-} else {
-reject("no token");
-}
-});
-}
+
 module.exports = protect;
