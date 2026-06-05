@@ -1,30 +1,61 @@
-import React, { createContext, useContext, useEffect, useState }
-import { useAuth } from "./authContext";
+```jsx
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
+
 import axios from "axios";
+import { useAuth } from "./authContext";
+
 const ProfileContext = createContext();
+
 export const ProfileProvider = ({ children }) => {
-    const { isAuthenticated } = useAuth();
-const [userDetails, setUserDetails] = useState(null);
-useEffect(() => {
-const fetchUserDetails = async () => {
-try {
-const response = await axios.get(
-"/api/user/profile"
-);
-// console.log(response.data);
-setUserDetails(response.data);
-} catch (error) {
-        console.log("Error fetching user details in profile", er
-}
+  const { isAuthenticated } = useAuth();
+
+  const [userDetails, setUserDetails] = useState(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const response = await axios.get(
+          "/api/user/profile",
+          {
+            withCredentials: true,
+          }
+        );
+
+        setUserDetails(response.data);
+      } catch (error) {
+        console.log(
+          "Error fetching user details:",
+          error
+        );
+      }
+    };
+
+    if (isAuthenticated) {
+      fetchUserDetails();
+    }
+  }, [isAuthenticated]);
+
+  return (
+    <ProfileContext.Provider
+      value={{
+        isAuthenticated,
+        userDetails,
+        setUserDetails,
+      }}
+    >
+      {children}
+    </ProfileContext.Provider>
+  );
 };
-fetchUserDetails();
-}, [isAuthenticated]);
-return (
-<ProfileContext.Provider value={{ isAuthenticated, userDetai
-{children}
-</ProfileContext.Provider>
-);
-};
+
 export const useProfile = () => {
-return useContext(ProfileContext);
+  return useContext(ProfileContext);
 };
+
+export default ProfileContext;
+```
