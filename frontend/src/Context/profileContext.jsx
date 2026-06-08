@@ -1,11 +1,4 @@
-```jsx
-import React, {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
-
+import { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { useAuth } from "./authContext";
 
@@ -13,25 +6,15 @@ const ProfileContext = createContext();
 
 export const ProfileProvider = ({ children }) => {
   const { isAuthenticated } = useAuth();
-
   const [userDetails, setUserDetails] = useState(null);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(
-          "/api/user/profile",
-          {
-            withCredentials: true,
-          }
-        );
-
+        const response = await axios.get("/api/user/profile");
         setUserDetails(response.data);
       } catch (error) {
-        console.log(
-          "Error fetching user details:",
-          error
-        );
+        console.log("Profile fetch error:", error);
       }
     };
 
@@ -42,11 +25,7 @@ export const ProfileProvider = ({ children }) => {
 
   return (
     <ProfileContext.Provider
-      value={{
-        isAuthenticated,
-        userDetails,
-        setUserDetails,
-      }}
+      value={{ userDetails, setUserDetails }}
     >
       {children}
     </ProfileContext.Provider>
@@ -56,6 +35,3 @@ export const ProfileProvider = ({ children }) => {
 export const useProfile = () => {
   return useContext(ProfileContext);
 };
-
-export default ProfileContext;
-```
