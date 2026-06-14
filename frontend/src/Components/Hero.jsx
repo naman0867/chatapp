@@ -1,87 +1,59 @@
-```jsx
 import { Link } from "react-router-dom";
-import hero from "../assets/hero.png";
 import { useAuth } from "../context/authContext";
+import hero from "../assets/Hero.jpg";
 
 const Hero = () => {
-  const { isAuthenticated } = useAuth();
+const { isAuthenticated } = useAuth();
 
-  return (
-    <section className="bg-background">
-      <div className="grid max-w-screen-xl px-4 py-8 mx-auto lg:gap-8 xl:gap-0 lg:py-16 lg:grid-cols-12">
-        <div className="mr-auto place-self-center lg:col-span-7">
-          <h1 className="max-w-2xl mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl xl:text-6xl">
-            Swift Chat: Instant Connections, Effortless Conversations
-          </h1>
+return ( <section className="min-h-[80vh] flex items-center bg-dark"> <div className="max-w-screen-xl mx-auto px-4 grid lg:grid-cols-2 gap-10 items-center"> <div> <h1 className="text-5xl font-bold text-white mb-6">
+Swift Chat: Instant Connections, Effortless Conversations </h1>
 
-          <p className="max-w-2xl mb-6 font-light text-gray-300 lg:mb-8 md:text-lg lg:text-xl">
-            Connect Seamlessly, Chat Effortlessly: Elevate Your Communication
-            Experience with Our Intuitive Chat Application!
-          </p>
+```
+      <p className="text-lg text-gray-300 mb-8">
+        Connect seamlessly, chat effortlessly, and stay connected
+        with friends, family, and teammates using Swift Chat.
+      </p>
 
-          <div className="flex flex-wrap gap-4">
-            {!isAuthenticated && (
-              <Link
-                to="/login"
-                className="inline-flex items-center justify-center px-5 py-3 text-white bg-primarySecond rounded-lg hover:opacity-90"
-              >
-                Login
-                <svg
-                  className="w-5 h-5 ml-2 -mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586L10.293 4.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
-            )}
+      <div className="flex gap-4 flex-wrap">
+        {!isAuthenticated ? (
+          <>
+            <Link
+              to="/login"
+              className="px-6 py-3 bg-blue-600 text-white rounded-lg"
+            >
+              Login
+            </Link>
 
-            {isAuthenticated && (
-              <Link
-                to="/chathome"
-                className="inline-flex items-center justify-center px-5 py-3 text-white bg-primarySecond rounded-lg hover:opacity-90"
-              >
-                Chat Home
-                <svg
-                  className="w-5 h-5 ml-2 -mr-1"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586L10.293 4.707a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
-            )}
-
-            {!isAuthenticated && (
-              <Link
-                to="/register"
-                className="inline-flex items-center justify-center px-5 py-3 text-white border border-gray-500 rounded-lg hover:bg-primary"
-              >
-                Register
-              </Link>
-            )}
-          </div>
-        </div>
-
-        <div className="hidden lg:mt-0 lg:col-span-5 lg:flex">
-          <img
-            src={hero}
-            alt="Hero"
-            className="w-full h-auto"
-          />
-        </div>
+            <Link
+              to="/register"
+              className="px-6 py-3 border border-gray-500 text-white rounded-lg"
+            >
+              Register
+            </Link>
+          </>
+        ) : (
+          <Link
+            to="/chathome"
+            className="px-6 py-3 bg-green-600 text-white rounded-lg"
+          >
+            Chat Home
+          </Link>
+        )}
       </div>
-    </section>
-  );
+    </div>
+
+    <div>
+      <img
+        src={hero}
+        alt="Swift Chat"
+        className="w-full rounded-xl shadow-lg"
+      />
+    </div>
+  </div>
+</section>
+```
+
+);
 };
 
 export default Hero;
-```
