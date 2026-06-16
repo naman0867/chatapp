@@ -1,10 +1,9 @@
-import Hero from "../components/Hero";
-import { useAuth } from "../context/authContext";
-import LandingNav from "../components/LandingNav";
-import Footer from "../components/Footer";
-import Features from "../components/Features";
-import Payments from "../components/Payments";
-import CustomerLogos from "../components/CustomerLogos";
+import Hero from "../Components/Hero";
+import LandingNav from "../Components/LandingNav";
+import Footer from "../Components/Footer";
+import Features from "../Components/Features";
+import Payments from "../Components/Payments";
+import CustomerLogos from "../Components/CustomerLogos";
 
 const Home = () => {
 const { isAuthenticated } = useAuth();
